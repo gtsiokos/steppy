@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="portrait">
+<head>
+  <meta charset="utf-8">
+  <title>Steppy: HTML5 step-sequencer for hobbyists</title>
+  <meta name="description" content="">
+
+  <!-- Prevent from scaling -->
+  <meta name="viewport" content="width=320.1, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- iOS Webclip -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!-- Android Webclip -->
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <meta id="ios-status-bar" name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <link rel="stylesheet" href="css/base.css" type='text/css'>
+</head>
+<body>
+  <div class="screen-background"></div>
+  <div class="screen-loading"></div>
+  <div class="screen-wrapper">
+    <div class="screen-machine" data-view="1">
+      <div class="view sequence">
+        <div class="controls">
+          <div class="group-1">
+            <div id="play-btn" class="button icon play-pause" data-toggle="on">
+              <div class="inner" data-option="1">
+                <div class="extra-inner light icon-play"></div>
+                <div class="extra-inner normal icon-play"></div>
+              </div>
+              <div class="inner icon-pause" data-option="2"></div>
+            </div>
+          </div>
+          <div class="group-2">
+            <div id="left-arrow-btn" class="button icon">
+              <div class="inner icon-left-open"></div>
+            </div>
+            <div id="right-arrow-btn" class="button icon" style="margin-left: 13rem">
+              <div class="inner icon-right-open"></div>
+            </div>
+          </div>
+          <div class="screen">
+            <div class="bezel"></div>
+            <div class="monitor">
+              <div class="tempo-view">
+                <div class="tempo"></div>
+              </div>
+              <div class="pattern-view">
+                <div class="pattern" data-id="0">KICK</div>
+                <div class="pattern" data-id="1">SNARE</div>
+                <div class="pattern" data-id="2">CLAP</div>
+                <div class="pattern" data-id="3">HIHAT</div>
+                <div class="pattern" data-id="4">TOM</div>
+                <div class="pattern" data-id="5">PERCS</div>
+                <div class="pattern" data-id="6">SYNTH</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="steps" data-current="0">
+          <div class="step" data-id="0"></div>
+          <div class="step" data-id="1"></div>
+          <div class="step" data-id="2"></div>
+          <div class="step" data-id="3"></div>
+          <div class="step" data-id="4"></div>
+          <div class="step" data-id="5"></div>
+          <div class="step" data-id="6"></div>
+          <div class="step" data-id="7"></div>
+          <div class="step" data-id="8"></div>
+          <div class="step" data-id="9"></div>
+          <div class="step" data-id="10"></div>
+          <div class="step" data-id="11"></div>
+          <div class="step" data-id="12"></div>
+          <div class="step" data-id="13"></div>
+          <div class="step" data-id="14"></div>
+          <div class="step" data-id="15"></div>
+          <div class="step" data-id="16"></div>
+          <div class="step" data-id="17"></div>
+          <div class="step" data-id="18"></div>
+          <div class="step" data-id="19"></div>
+          <div class="step" data-id="20"></div>
+          <div class="step" data-id="21"></div>
+          <div class="step" data-id="22"></div>
+          <div class="step" data-id="23"></div>
+          <div class="step" data-id="24"></div>
+          <div class="step" data-id="25"></div>
+          <div class="step" data-id="26"></div>
+          <div class="step" data-id="27"></div>
+          <div class="step" data-id="28"></div>
+          <div class="step" data-id="29"></div>
+          <div class="step" data-id="30"></div>
+          <div class="step" data-id="31"></div>
+        </div>
+      </div>
+      <div class="view options">
+        <!--
+        -->
+        <div class="controls"></div>
+        <div class="panel"></div>
+        <div class="content"></div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery.js"></script>
+  <script src="js/lodash.min.js"></script>
+  <script src="js/lowLag.js"></script>
+  <script src="js/ticker.js"></script>
+  <script src="js/mobilizer.js"></script>
+  <script src="js/machine.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+
+LED_COLOR = #FA9A48
+LED_TINT_COLOR = #774A2B
+STEP_SIZE = 45
+STEP_SPACE = 10
+STEP_ROW_SIZE = 8
+
+@import 'nib'
+@import 'reset.css'
+@import 'prefixer'
+@import 'fonts'
+@import 'animations'
+
+*
+  box-sizing: border-box
+  -webkit-touch-callout: none
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  -webkit-user-select: none
+
+html
+  font-size: 1px /* scale down 1rem == 1px (assuming the default browser font-size is 16px)  */
+  -webkit-text-size-adjust: none /* force Webkit to allow 1px font-size */
+
+body
+  overflow: hidden
+  font-size: 16px
+  font-size: 16rem
+  background: #111
+
+.fullscreen-containers
+  position: absolute
+  overflow: hidden
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+
+.screen-wrapper
+  perspective: 350rem
+  @extend .fullscreen-containers
+
+.screen-background
+  background: #111
+  @extend .fullscreen-containers
+
+.screen-machine
+  @extend .fullscreen-containers
+
+  transform-style: preserve-3d
+  transform-origin: center center
+  transition-property: transform
+  transition-duration: .45s
+  transition-delay: 0s
+  transition-timing-function: cubic-bezier(.42, 0, .58, 1)
+
+  &[data-view="1"]
+    transform: rotate3d(0,1,0,0deg)
+  &[data-view="2"]
+    transform: rotate3d(0,1,0,180deg)
+
+  .view
+    width: 100%
+    height: 100%
+    background: #111 url('../img/machine_bg.jpg') top center no-repeat
+    background-size: 500rem auto
+    backface-visibility: hidden;
+
+  .view.sequence
+    transform: rotate3d(0,1,0,0deg)
+
+  .view.options
+    transform: rotate3d(0,1,0,180deg)
+
+  .controls
+    position: absolute
+    width: 100%
+    height: 60rem
+    top: 0
+    left: 0
+    background: rgba(#000,0.2)
+    box-shadow: inset 0 0 1rem 3rem rgba(#000,0.2),
+                inset 0 0 0 1rem rgba(#fff,0.1)
+
+    .group-1
+      position: absolute
+      top: 9rem
+      left: 13rem
+      overflow: hidden
+
+    .group-2
+      position: absolute
+      top: 9rem
+      right: 13rem
+      overflow: hidden
+
+    .screen
+      position: absolute
+      width: 200rem
+      height: 59rem
+      right: 120rem
+
+      .bezel
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background: #000
+
+      .monitor
+        position: relative
+        width: 90%
+        height: 88%
+        top: 3rem
+        margin: 0 auto
+        background: #CDCEC6
+        border-radius: 5rem
+
+
+        .pattern-view
+          position: relative
+          width: 88%
+          top: 10rem
+          margin: 0 auto
+
+        .pattern
+          opacity: 0
+          position: absolute
+          width: 100%
+          color: #CDCEC6
+          background: rgba(#000,0.77)
+          padding: 7rem 0 8rem 0
+          font: bold 15rem/1 sans_serif_font_stack
+          text-align: center
+
+        .pattern.selected
+          opacity: 1
+
+    .button
+      position: relative
+      float: left
+      color: #222
+      font: bold 16rem sans_serif_font_stack
+      text-align: center
+      width: 40rem
+      height: @width
+      border: solid 1rem rgba(#000,0.7)
+      border-radius: 3rem
+
+    .button.icon
+      font-size: 22rem
+
+    .button.icon .inner,
+    .button.icon .extra-inner
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      padding-top: 5rem
+      background: radial-gradient(ellipse at center, LED_COLOR 0%, darken(LED_COLOR,25%) 44%, LED_TINT_COLOR 100%)
+      box-shadow: inset 0 0 8rem 3rem rgba(#000,0.5)
+      border-radius: 3rem
+
+    .button.icon .inner:active
+      background: radial-gradient(ellipse at center, lighten(LED_COLOR,70%) 0%, lighten(LED_COLOR,40%) 25%, LED_COLOR 44%, LED_TINT_COLOR 100%)
+
+    .button.play-pause
+      .inner[data-option="1"]
+        .light
+          z-index: 20
+          background: radial-gradient(ellipse at center, #7AFF7A 0%, darken(#7AFF7A,25%) 44%, darken(#7AFF7A,60%) 100%)
+          animation-name: blink_animation
+          animation-duration: 1s
+          animation-delay: 0s
+          animation-iteration-count: infinite
+          animation-timing-function: ease-out
+
+        .normal
+          z-index: 10
+          background: radial-gradient(ellipse at center, darken(#7AFF7A,20%) 0%, darken(#7AFF7A,45%) 44%, darken(#7AFF7A,60%) 100%)
+
+
+      .inner[data-option="2"]
+        background: radial-gradient(ellipse at center, #FF6666 0%, darken(#FF6666,25%) 44%, darken(#FF6666,60%) 100%)
+
+    .button[data-toggle="on"]
+      .inner[data-option="1"]
+        opacity: 1
+      .inner[data-option="2"]
+        opacity: 0
+
+    .button[data-toggle="off"]
+      .inner[data-option="1"]
+        opacity: 0
+      .inner[data-option="2"]
+        opacity: 1
+      
+      
+
+  .steps
+    position: absolute
+    overflow: hidden
+    width: unit((STEP_SIZE*STEP_ROW_SIZE)+(STEP_SPACE*(STEP_ROW_SIZE - 1)),rem)
+    top: 74rem
+    left: 50%
+    margin-left: -(@width/2) rem
+
+    &[data-current="0"] .p0,
+    &[data-current="1"] .p1,
+    &[data-current="2"] .p2,
+    &[data-current="3"] .p3,
+    &[data-current="4"] .p4,
+    &[data-current="5"] .p5,
+    &[data-current="6"] .p6,
+    &[data-current="7"] .p7
+      background: radial-gradient(ellipse at center, lighten(LED_COLOR,30%) 0%, LED_COLOR 44%, LED_TINT_COLOR 100%)
+
+    .step
+      float: left
+      width: STEP_SIZE rem
+      height: @width
+      margin-right: STEP_SPACE rem
+      margin-bottom: STEP_SPACE rem
+      background: radial-gradient(ellipse at center, LED_COLOR 0%, darken(LED_COLOR,25%) 44%, LED_TINT_COLOR 100%)
+      border: solid 1rem rgba(#000,0.7)
+      border-radius: 3rem
+
+    .step:nth-child(8n)
+      margin-right: 0
+
+    .step.active
+      background: radial-gradient(ellipse at center, lighten(LED_COLOR,70%) 0%, lighten(LED_COLOR,40%) 25%, LED_COLOR 44%, LED_TINT_COLOR 100%)
+
+
+
+
+
+
