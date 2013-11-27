@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# Time: Wed Jul 31 2013 13:09:36 GMT+0300 (EEST)
+
+CACHE:
+index.html
+css/
+js/
+img/
+fonts/
+sound_pack
+
+NETWORK:
+http://*
+https://*
