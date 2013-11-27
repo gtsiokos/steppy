@@ -1,4 +1,6 @@
 
+screen.mozLockOrientation("landscape");
+
 if((document.ontouchstart!==null)){
   var tap = {
     start: 'mousedown',
