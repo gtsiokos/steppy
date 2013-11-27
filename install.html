@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html class="portrait">
+<head>
+  <meta charset="utf-8">
+  <title>Steppy: HTML5 step-sequencer for hobbyists</title>
+  <meta name="description" content="">
+
+  <!-- Prevent from scaling -->
+  <meta name="viewport" content="width=320.1, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- iOS Webclip -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!-- Android Webclip -->
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <meta id="ios-status-bar" name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <link rel="stylesheet" href="css/base.css" type='text/css'>
+</head>
+<body>
+  <button id="install-btn" style="position: absolute; top: 50rem; left: 50rem; padding: 8rem">INSTALL STEPPY</button>
+  <script src="js/jquery.js"></script>
+  <script>
+    $(function(){
+      $('#install-btn').on('click', function(ev){
+        var manifest_url = location.href + 'manifest.webapp';
+        ev.preventDefault();
+
+        // define the manifest URL
+        // install the app
+        var installLocFind = navigator.mozApps.install(manifest_url);
+        installLocFind.onsuccess = function(data) {
+          // App is installed, do something
+        };
+        installLocFind.onerror = function() {
+          // App wasn't installed, info is in
+          // installapp.error.name
+          alert(installLocFind.error.name);
+        };
+      });
+    });
+  </script>
+</body>
+</html>
