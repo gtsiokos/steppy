@@ -24,7 +24,7 @@
   },
   "locales": {
     "en": {
-      "name": "Firefox OS Boilerplate App",
+      "name": "Steppy app",
       "description": "Boilerplate Firefox OS app with example use cases to get started"
     }
   }
