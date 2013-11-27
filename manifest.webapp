@@ -3,9 +3,8 @@
   "name": "Steppy",
   "description": "HTML5 step-sequencer for hobbyists",
   "launch_path": "/index.html",
-  "icons": {
-
-  },
+  "icons": {},
+  "orientation": ["landscape-primary"],
   "developer": {
     "name": "George Tsiokos, Gerasimos Soulis, Spyros Markopoulos",
     "url": "http://movinapp.com"

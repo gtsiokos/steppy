@@ -1,5 +1,6 @@
 
-screen.mozLockOrientation("landscape");
+window.screen.mozLockOrientation("landscape-primary");
+window.screen.lockOrientation("landscape-primary");
 
 if((document.ontouchstart!==null)){
   var tap = {
