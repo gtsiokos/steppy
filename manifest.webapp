@@ -1,14 +1,14 @@
 {
-  "version": "1",
-  "name": "Steppy loop machine",
-  "launch_path": "/index.html",
-  "description": "loooooop",
+  "version": "0.1",
+  "name": "Steppy",
+  "description": "HTML5 step-sequencer for hobbyists",
+  "launch_path": "https://dl.dropboxusercontent.com/u/42252416/steppy/index.html",
   "icons": {
 
   },
   "developer": {
-    "name": "koko lala",
-    "url": "http://robertnyman.com"
+    "name": "George Tsiokos, Gerasimos Soulis, Spyros Markopoulos",
+    "url": "http://movinapp.com"
   },
   "installs_allowed_from": [
     "*"
@@ -26,49 +26,6 @@
     "en": {
       "name": "Firefox OS Boilerplate App",
       "description": "Boilerplate Firefox OS app with example use cases to get started"
-    },
-    "pt_BR": {
-      "name": "Firefox OS Boilerplate App",
-      "description": "Boilerplate Firefox OS app com exemplos de uso para começar"
-    },
-    "en-US": {
-      "name": "Firefox OS Boilerplate App",
-      "description": "Boilerplate Firefox OS app with example use cases to get started"
-    },
-    "de": {
-      "name": "Firefox OS Boilerplate App",
-      "description": "Boilerplate Firefox OS App mit Beispiel Anwendungsfälle, um loszulegen"
-    },
-    "hi": {
-      "name": "फायर फॉक्स OS BoilerPlate App"
-    },
-    "it_IT": {
-      "name": "Firefox OS Boilerplate App",
-      "description": "Boilerplate per Firefox OS con esempi e casi d'uso"
-    },
-    "ar": {
-      "name": "التطبيق المساعد لبدء التطوير لـFirefox OS",
-      "description": "تطبيق يُساعدك على بدء التطوير لنظام Firefox مُرفق بأمثلة عن حالات الاستخدام"
-    },
-    "el": {
-      "name": "Firefox OS Boilerplate Εφαρμογή",
-      "description": "Boilerplate Firefox OS εφαρμογή με παραδείγματα χρήσης για να ξεκινήσετε"
-    },
-    "fr": {
-      "name": "Modèle d’application pour Firefox OS",
-      "description": "Modèle d’application pour Firefox OS avec des exemples de cas d’utilisation pour bien commencer"
-    },
-    "id": {
-      "name": "Firefox OS Boilerplate Aplikasi",
-      "description": "Aplikasi boilerplate Firefox OS dengan contoh kasus penggunaan untuk memulai"
-    },
-    "ja": {
-      "name": "Firefox OSボイラプレートアプリ",
-      "description": "いくつかの用例を含めた、Firefox OS用アプリの入門用見本"
-    },
-    "nl": {
-      "name": "Firefox OS Boilerplate App",
-      "description": "Boilerplate Firefox OS app met voorbeeld use cases om te beginnen"
     }
   }
 }
