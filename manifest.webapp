@@ -2,7 +2,7 @@
   "version": "0.1",
   "name": "Steppy",
   "description": "HTML5 step-sequencer for hobbyists",
-  "launch_path": "/index.html",
+  "launch_path": "https://dl.dropboxusercontent.com/u/42252416/steppy/index.html",
   "icons": {
 
   },
