@@ -42,13 +42,21 @@
               <div class="inner icon-right-open"></div>
             </div>
           </div>
+          <div class="group-3">
+            <div id="tempo-btn" class="button text tempo" data-toggle="off">
+              <div class="inner">
+                <div class="extra-inner active-state-bg"></div>
+                <div class="extra-inner">TEMPO</div>
+              </div>
+            </div>
+          </div>
           <div class="screen">
             <div class="bezel"></div>
             <div class="monitor">
-              <div class="tempo-view">
-                <div class="tempo"></div>
+              <div data-id="0" class="panel tempo-view">
+                <div class="pattern selected"><span id="tempo-bind">125</span> <span class="bpm">bpm</span></div>
               </div>
-              <div class="pattern-view">
+              <div data-id="1" class="panel selected pattern-view">
                 <div class="pattern" data-id="0">KICK</div>
                 <div class="pattern" data-id="1">SNARE</div>
                 <div class="pattern" data-id="2">CLAP</div>

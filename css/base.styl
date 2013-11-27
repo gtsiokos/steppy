@@ -93,6 +93,12 @@ body
       right: 13rem
       overflow: hidden
 
+    .group-3
+      position: absolute
+      top: 13rem
+      left: 70rem
+      overflow: hidden
+
     .screen
       position: absolute
       width: 200rem
@@ -116,8 +122,14 @@ body
         background: #CDCEC6
         border-radius: 5rem
 
+        .panel
+          opacity: 0
 
-        .pattern-view
+        .panel.selected
+          opacity: 1
+
+        .pattern-view,
+        .tempo-view
           position: relative
           width: 88%
           top: 10rem
@@ -139,30 +151,45 @@ body
     .button
       position: relative
       float: left
-      color: #222
-      font: bold 16rem sans_serif_font_stack
-      text-align: center
-      width: 40rem
-      height: @width
       border: solid 1rem rgba(#000,0.7)
       border-radius: 3rem
 
     .button.icon
-      font-size: 22rem
+      width: 40rem
+      height: @width
+      color: #222
+      font: bold 22rem/1 sans_serif_font_stack
+      text-align: center
 
-    .button.icon .inner,
-    .button.icon .extra-inner
+    .button.text
+      width: 80rem
+      height: 31rem
+      color: #222
+      font: bold 13rem/1 sans_serif_font_stack
+      text-align: center
+
+    .button .inner,
+    .button .extra-inner
       position: absolute
       top: 0
       left: 0
       width: 100%
       height: 100%
-      padding-top: 5rem
-      background: radial-gradient(ellipse at center, LED_COLOR 0%, darken(LED_COLOR,25%) 44%, LED_TINT_COLOR 100%)
-      box-shadow: inset 0 0 8rem 3rem rgba(#000,0.5)
       border-radius: 3rem
 
-    .button.icon .inner:active
+    .button .inner
+      background: radial-gradient(ellipse at center, LED_COLOR 0%, darken(LED_COLOR,25%) 44%, LED_TINT_COLOR 100%)
+      box-shadow: inset 0 0 8rem 3rem rgba(#000,0.5)
+
+    .button.icon .inner,
+    .button.icon .extra-inner
+      padding-top: 7rem
+
+    .button.text .inner,
+    .button.text .extra-inner
+      padding-top: 7rem
+
+    .button .inner:active
       background: radial-gradient(ellipse at center, lighten(LED_COLOR,70%) 0%, lighten(LED_COLOR,40%) 25%, LED_COLOR 44%, LED_TINT_COLOR 100%)
 
     .button.play-pause
@@ -184,19 +211,39 @@ body
       .inner[data-option="2"]
         background: radial-gradient(ellipse at center, #FF6666 0%, darken(#FF6666,25%) 44%, darken(#FF6666,60%) 100%)
 
-    .button[data-toggle="on"]
+    .button.play-pause[data-toggle="on"]
       .inner[data-option="1"]
         opacity: 1
       .inner[data-option="2"]
         opacity: 0
 
-    .button[data-toggle="off"]
+    .button.play-pause[data-toggle="off"]
       .inner[data-option="1"]
         opacity: 0
       .inner[data-option="2"]
         opacity: 1
-      
-      
+
+    .button.tempo
+      .active-state-bg
+        position: absolute
+        top: 4rem
+        left: 4rem
+        width: 88%
+        height: 72%
+        background: rgba(#000,0.77)
+
+    .button.tempo[data-toggle="on"]
+      color: darken(#EB7006,15%)
+
+      .active-state-bg
+        opacity: 1
+
+    .button.tempo[data-toggle="off"]
+      .active-state-bg
+        opacity: 0
+
+    .button.tempo .inner:active
+      background: radial-gradient(ellipse at center, LED_COLOR 0%, darken(LED_COLOR,25%) 44%, LED_TINT_COLOR 100%)
 
   .steps
     position: absolute

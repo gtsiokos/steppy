@@ -442,6 +442,12 @@ body {
   right: 13rem;
   overflow: hidden;
 }
+.screen-machine .controls .group-3 {
+  position: absolute;
+  top: 13rem;
+  left: 70rem;
+  overflow: hidden;
+}
 .screen-machine .controls .screen {
   position: absolute;
   width: 200rem;
@@ -471,7 +477,18 @@ body {
   -moz-background-clip: padding;
   background-clip: padding-box;
 }
-.screen-machine .controls .screen .monitor .pattern-view {
+.screen-machine .controls .screen .monitor .panel {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+.screen-machine .controls .screen .monitor .panel.selected {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.screen-machine .controls .screen .monitor .pattern-view,
+.screen-machine .controls .screen .monitor .tempo-view {
   position: relative;
   width: 88%;
   top: 10rem;
@@ -497,11 +514,6 @@ body {
 .screen-machine .controls .button {
   position: relative;
   float: left;
-  color: #222;
-  font: bold 16rem Verdana, Arial, Helvetica, sans-serif;
-  text-align: center;
-  width: 40rem;
-  height: 40rem;
   border: solid 1rem rgba(0,0,0,0.7);
   -webkit-border-radius: 3rem;
   border-radius: 3rem;
@@ -512,19 +524,26 @@ body {
   background-clip: padding-box;
 }
 .screen-machine .controls .button.icon {
-  font-size: 22rem;
+  width: 40rem;
+  height: 40rem;
+  color: #222;
+  font: bold 22rem/1 Verdana, Arial, Helvetica, sans-serif;
+  text-align: center;
 }
-.screen-machine .controls .button.icon .inner,
-.screen-machine .controls .button.icon .extra-inner {
+.screen-machine .controls .button.text {
+  width: 80rem;
+  height: 31rem;
+  color: #222;
+  font: bold 13rem/1 Verdana, Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+.screen-machine .controls .button .inner,
+.screen-machine .controls .button .extra-inner {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  padding-top: 5rem;
-  background: radial-gradient(ellipse at center, #fa9a48 0%, #eb7006 44%, #774a2b 100%);
-  -webkit-box-shadow: inset 0 0 8rem 3rem rgba(0,0,0,0.5);
-  box-shadow: inset 0 0 8rem 3rem rgba(0,0,0,0.5);
   -webkit-border-radius: 3rem;
   border-radius: 3rem;
   -moz-background-clip: padding;
@@ -533,7 +552,20 @@ body {
   -moz-background-clip: padding;
   background-clip: padding-box;
 }
-.screen-machine .controls .button.icon .inner:active {
+.screen-machine .controls .button .inner {
+  background: radial-gradient(ellipse at center, #fa9a48 0%, #eb7006 44%, #774a2b 100%);
+  -webkit-box-shadow: inset 0 0 8rem 3rem rgba(0,0,0,0.5);
+  box-shadow: inset 0 0 8rem 3rem rgba(0,0,0,0.5);
+}
+.screen-machine .controls .button.icon .inner,
+.screen-machine .controls .button.icon .extra-inner {
+  padding-top: 7rem;
+}
+.screen-machine .controls .button.text .inner,
+.screen-machine .controls .button.text .extra-inner {
+  padding-top: 7rem;
+}
+.screen-machine .controls .button .inner:active {
   background: radial-gradient(ellipse at center, #fee1c8 0%, #fcc291 25%, #fa9a48 44%, #774a2b 100%);
 }
 .screen-machine .controls .button.play-pause .inner[data-option="1"] .light {
@@ -567,25 +599,49 @@ body {
 .screen-machine .controls .button.play-pause .inner[data-option="2"] {
   background: radial-gradient(ellipse at center, #f66 0%, #ff0d0d 44%, #8f0000 100%);
 }
-.screen-machine .controls .button[data-toggle="on"] .inner[data-option="1"] {
+.screen-machine .controls .button.play-pause[data-toggle="on"] .inner[data-option="1"] {
   opacity: 1;
   -ms-filter: none;
   filter: none;
 }
-.screen-machine .controls .button[data-toggle="on"] .inner[data-option="2"] {
+.screen-machine .controls .button.play-pause[data-toggle="on"] .inner[data-option="2"] {
   opacity: 0;
   filter: alpha(opacity=0);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 }
-.screen-machine .controls .button[data-toggle="off"] .inner[data-option="1"] {
+.screen-machine .controls .button.play-pause[data-toggle="off"] .inner[data-option="1"] {
   opacity: 0;
   filter: alpha(opacity=0);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 }
-.screen-machine .controls .button[data-toggle="off"] .inner[data-option="2"] {
+.screen-machine .controls .button.play-pause[data-toggle="off"] .inner[data-option="2"] {
   opacity: 1;
   -ms-filter: none;
   filter: none;
+}
+.screen-machine .controls .button.tempo .active-state-bg {
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+  width: 88%;
+  height: 72%;
+  background: rgba(0,0,0,0.77);
+}
+.screen-machine .controls .button.tempo[data-toggle="on"] {
+  color: #c85f05;
+}
+.screen-machine .controls .button.tempo[data-toggle="on"] .active-state-bg {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.screen-machine .controls .button.tempo[data-toggle="off"] .active-state-bg {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+.screen-machine .controls .button.tempo .inner:active {
+  background: radial-gradient(ellipse at center, #fa9a48 0%, #eb7006 44%, #774a2b 100%);
 }
 .screen-machine .steps {
   position: absolute;

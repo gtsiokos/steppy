@@ -1,10 +1,14 @@
 $(function(){
-  var STEPS_NUM = 32;
-  var PATTERNS_NUM = 7;
+  STEPS_NUM = 32;
+  PATTERNS_NUM = 7;
+  INTERVAL = undefined;
+  TEMPO = 125;
+
   var sequences = [];
   var $steps_parent = $('.steps');
   var $steps = $('.steps .step');
   var $play_button = $('#play-btn');
+  var $tempo_button = $('#tempo-btn');
 
   var fill_empty_sequence = function(){
     var seq = [];
@@ -45,8 +49,6 @@ $(function(){
   }
 
   var selected = sequences[0];
-  var tempo;
-  var interval;
   var current_step = 0;
   var is_playing = false;
 
@@ -56,24 +58,27 @@ $(function(){
     $steps.parent('.steps').attr('data-current',id);
   };
 
-  var set_tempo = function(value){
-    tempo = ((60/120)/4)*1000;
+  var set_interval = function(){
+    console.log('tempo: ',TEMPO);
+    if(!is_playing) return;
+    if(INTERVAL) Ticker.clear(INTERVAL);
+    INTERVAL = undefined;
+    INTERVAL = Ticker.interval(function(){
+      beat();
+    },TEMPO);
   };
 
   var play = function(){
-    console.log('tempo: ',tempo);
     if(is_playing) return;
     is_playing = true;
-    interval = Ticker.interval(function(){
-      beat();
-    },tempo);
+    set_interval();
   };
 
   var pause = function(){
     if(!is_playing) return;
     is_playing = false;
-    Ticker.clear(interval);
-    interval = undefined;
+    Ticker.clear(INTERVAL);
+    INTERVAL = undefined;
   };
 
   $steps.on(tap.start,function(){
@@ -97,10 +102,74 @@ $(function(){
     }
   });
 
+  $tempo_button.on(tap.start,function(){
+    if($tempo_button.attr('data-toggle') == 'on'){
+      $tempo_button.attr('data-toggle','off');
+      Screen.go_to(1);
+    } else {
+      $tempo_button.attr('data-toggle','on');
+      Screen.go_to(0);
+    }
+  });
+
+  window.Tempo = (function(){
+    var self = {};
+    var el = $('#tempo-bind');
+    var bpm;
+    var tempo;
+
+    var convert_bpm = function(bpm_num){
+      return ((60/bpm_num)/4)*1000;
+    };
+
+    bpm = 125;
+    tempo = convert_bpm(125);
+
+    var is_ok = function(num){
+      return (bpm+num > 220 || bpm-num < 20) ? false : true;
+    };
+
+    self.get = function(){
+      return tempo;
+    };
+
+    self.set = function(num){
+      bpm = num;
+      tempo = convert_bpm(num);
+    };
+
+    self.add = function(num){
+      if(!is_ok(num)) return;
+      self.set(bpm+num);
+    };
+
+    self.remove = function(num){
+      if(!is_ok(num)) return;
+      self.set(bpm-num);
+    };
+
+    self.increase = function(){
+      self.add(1);
+    };
+
+    self.decrease = function(){
+      self.remove(1);
+    };
+
+    self.render = function(){
+      el.html(bpm);
+      TEMPO = tempo;
+      set_interval();
+    };
+    
+    return self;
+  })();
+
   window.Screen = (function(){
     var self = {};
     var el = $('.screen .monitor');
     var index = 0;
+    var current_view_id = 1;
     var max_index;
 
     var view = {
@@ -111,29 +180,34 @@ $(function(){
     self.events = (function(){
       var left_arrow_btn = $('#left-arrow-btn');
       var right_arrow_btn = $('#right-arrow-btn');
-      var tempo_btn;
 
       left_arrow_btn.on(tap.start, function(){
-        index = index-1;
-        self.render();
+        if($tempo_button.attr('data-toggle') == 'on'){
+          Tempo.decrease();
+          Tempo.render();
+        } else {
+          index = index-1;
+          self.render();
+        }
       });
 
       right_arrow_btn.on(tap.start, function(){
-        index = index+1;
-        self.render();
+        if($tempo_button.attr('data-toggle') == 'on'){
+          Tempo.increase();
+          Tempo.render();
+        } else {
+          index = index+1;
+          self.render();
+        }
       });
 
     })();
     
-    self.view = (function(id){
-      var that = {};
-
-      that.go_to = function(){
-
-      };
-
-      return that;
-    })();
+    self.go_to = function(id){
+      current_view_id = id;
+      el.find('.panel').removeClass('selected');
+      el.find(".panel[data-id='"+id+"']").addClass('selected');
+    };
 
     self.render = function(){
       max_index = $('.pattern-view .pattern').length-1;
@@ -152,6 +226,4 @@ $(function(){
     self.render();
     return self;
   })();
-
-  set_tempo();
 });
